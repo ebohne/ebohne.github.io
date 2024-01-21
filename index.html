@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <style>
+    #top{
+      position:fixed;
+      width:100%;
+      height:40px;
+      top:0px;
+      background-color:gray;
+      display:flex;
+      justify-content:space-evenly;
+      box-sizing:border-box;
+    }
+    .topM{
+      display:flex;
+      align-content:center;
+      padding: 11px;
+    }
+
+    .topM:hover{
+      background-color:lightgray;
+    }
+
+    .noUnderline{
+      text-decoration:none;
+      color:black;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        text-align: left;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+    }
+    td:hover {
+        background-color: #f5f5f5;
+    }
+    td:first-child {
+        background-color: #f5f5f5;
+        color: #000000;
+        pointer-events: none;
+    }
+    .top{
+        background-color: #f5f5f5;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="top">
+    <div class="topM">N2226N</div>
+    <div class="topM"><a href=N8060U.html class="noUnderline">N8060U</a></div>
+    <div class="topM"><a href=N8401T.html class="noUnderline">N8401T</a></div>
+    <div class="topM"><a href=N3001T.html class="noUnderline">N3001T</a></div>
+    <div class="topM"><a href=N8218Z.html class="noUnderline">N8218Z</a></div>
+  </div>
+
+  <table>
+      <thead>
+          <tr>
+              <th class="top">Item</th>
+              <th class="top">Weight (lb)</th>
+              <th class="top">Arm</th>
+              <th class="top">Moment</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>Basic Empty Weight</td>
+              <td contenteditable="false" onload="storeValue1(this)" onclick="clearCell(this)">1585.59</td>
+              <td contenteditable="false">87.47</td>
+              <td contenteditable="false" id="test1">138691.56</td>
+          </tr>
+          <tr>
+              <td>Usable Fuel (6lb/gal)</td>
+              <td contenteditable="true" onblur="storeValue1(this)" onclick="clearCell(this)">-</td>
+              <td contenteditable="false">95</td>
+              <td contenteditable="false">x</td>
+          </tr>
+          <tr>
+              <td>Front Passenger</td>
+              <td contenteditable="true" onblur="storeValue1(this)" onclick="clearCell(this)">-</td>
+              <td contenteditable="false">80.5</td>
+              <td contenteditable="false">x</td>
+          </tr>
+          <tr>
+              <td>Rear Passenger</td>
+              <td contenteditable="true" onblur="storeValue1(this)" onclick="clearCell(this)">-</td>
+              <td contenteditable="false">118.1</td>
+              <td contenteditable="false">x</td>
+          </tr>
+          <tr>
+              <td>Baggage</td>
+              <td contenteditable="true" onblur="storeValue1(this)" onclick="clearCell(this)">-</td>
+              <td contenteditable="false">142.8</td>
+              <td contenteditable="false">x</td>
+          </tr>
+          <tr>
+              <td>Total Raw Weight</td>
+              <td contenteditable="false">x</td>
+              <td contenteditable="false">x</td>
+              <td contenteditable="false">x</td>
+          </tr>
+          <tr>
+              <td>Taxi Fuel (approx 1.5gal)</td>
+              <td contenteditable="true" onblur="storeValue1(this)" onclick="clearCell(this)">9</td>
+              <td contenteditable="false">95</td>
+              <td contenteditable="false">855</td>
+          </tr>
+          <tr>
+              <td>Takeoff Weight</td>
+              <td contenteditable="false">x</td>
+              <td contenteditable="false">x</td>
+              <td contenteditable="false">x</td>
+          </tr>
+          <tr>
+              <td>Trip Fuel (8gal/hr)</td>
+              <td contenteditable="true" onblur="storeValue1(this)" onclick="clearCell(this)">-</td>
+              <td contenteditable="false">95</td>
+              <td contenteditable="false">x</td>
+          </tr>
+          <tr>
+              <td>Landing Weight</td>
+              <td contenteditable="false">x</td>
+              <td contenteditable="false">x</td>
+              <td contenteditable="false">x</td>
+          </tr>
+      </tbody>
+  </table>
+
+  <p>
+      *Calculations for N2226N (48gal tank)
+      <br>
+      *Note: Any cells marked "-" are meant to be filled in by the user, and cells marked "x" will be automatically calculated once the correct values are inputted.
+      <br>
+      <img src="PA28.jpg" alt="Weight and Balance Chart">
+  </p>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
+
+<script>
+  const table = document.querySelector('table');
+  table.addEventListener('input', (event) => {
+      const td = event.target.closest('td');
+      if (td && !td.matches(':first-child')){
+          console.log(`New value: ${td.textContent}`);
+      }
+  });
+
+  function storeValue1(cell){
+    let value = cell.innerHTML;
+    let row = cell.parentNode.rowIndex;
+    let col = cell.cellIndex;
+    //Math.ceil(N / 10) * 10; //used this example to round to nearest hundredth decimal
+    if(document.getElementsByTagName("table")[0].rows[row].cells[col].innerHTML != NaN){
+      let targetCell = document.getElementsByTagName("table")[0].rows[row].cells[col + 2];
+      targetCell.innerHTML = Math.ceil(value*document.getElementsByTagName("table")[0].rows[row].cells[col + 1].innerHTML*100)/100;
+    }
+    if(isNaN(document.getElementsByTagName("table")[0].rows[row].cells[col].innerHTML || document.getElementsByTagName("table")[0].rows[row].cells[col].innerHTML < 0)){
+      let targetCell = document.getElementsByTagName("table")[0].rows[row].cells[col + 2];
+      targetCell.innerHTML = "x";
+    }
+    if(document.getElementsByTagName("table")[0].rows[row].cells[col].innerHTML == ''){
+      let targetCell = document.getElementsByTagName("table")[0].rows[row].cells[col];
+      targetCell.innerHTML = "-";
+      let targetCell2 = document.getElementsByTagName("table")[0].rows[row].cells[col+2];
+      targetCell2.innerHTML = 'x';
+    }
+
+    let totalWeight = 0;
+    let table = document.querySelector("table");
+    let rows = table.rows;
+    for(let i = 1; i <= 5; i++){
+      totalWeight += parseFloat(rows[i].cells[1].textContent);
+    }
+    rows[6].cells[1].textContent = Math.ceil(totalWeight*100)/100;
+
+    let totalMoment = 0;
+    for(let i = 1; i <= 5; i++){
+      totalMoment += parseFloat(rows[i].cells[3].textContent);
+      if(rows[i].cells[3].textContent == "NaN"){
+        rows[6].cells[3].textContent = 'x';
+      }
+    }
+    rows[6].cells[3].textContent = Math.ceil(totalMoment*100)/100;
+
+    let totalArm = document.getElementsByTagName("table")[0].rows[6].cells[2];
+    totalArm.innerHTML = Math.ceil(rows[6].cells[3].textContent/rows[6].cells[1].textContent*100)/100;
+
+    let takeoffWeight = 0;
+    let takeoffMoment = 0;
+    takeoffWeight = parseFloat(rows[6].cells[1].textContent) - parseFloat(rows[7].cells[1].textContent);
+    rows[8].cells[1].textContent = Math.ceil(takeoffWeight*100)/100;
+    takeoffMoment = parseFloat(rows[6].cells[3].textContent) - parseFloat(rows[7].cells[3].textContent);
+    rows[8].cells[3].textContent = Math.ceil(takeoffMoment*100)/100;
+
+    let takeoffArm = 0;
+    takeoffArm = takeoffMoment/takeoffWeight;
+    rows[8].cells[2].textContent = Math.ceil(takeoffArm*100)/100;
+
+    let landingWeight = takeoffWeight;
+    landingWeight -= parseFloat(rows[9].cells[1].textContent);
+    rows[10].cells[1].textContent = Math.ceil(landingWeight*100)/100;
+
+    let landingMoment = 0;
+    landingMoment = parseFloat(rows[8].cells[3].textContent) - parseFloat(rows[9].cells[3].textContent);
+    rows[10].cells[3].textContent = Math.ceil(landingMoment*100)/100;
+
+    let landingArm = landingMoment/landingWeight;
+    rows[10].cells[2].textContent = Math.ceil(landingArm*100)/100;
+
+    for (let i = 6; i < rows.length; i++) {
+      for (let j = 1; j < rows[i].cells.length; j++) {
+        if (isNaN(rows[i].cells[j].innerHTML) && rows[i].cells[j].innerHTML !== '-') {
+              rows[i].cells[j].innerHTML = 'x';
+        }
+      }
+    }
+  }
+
+  function clearCell(cell){
+    let value = cell.innerHTML;
+    let row = cell.parentNode.rowIndex;
+    let col = cell.cellIndex;
+    let targetCell = document.getElementsByTagName("table")[0].rows[row].cells[col];
+    targetCell.innerHTML = '';
+  }
+</script>

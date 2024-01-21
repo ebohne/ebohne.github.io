@@ -1,0 +1,29 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+#top{
+  position:fixed;
+  width:100%;
+  height:40px;
+  top:0px;
+  background-color:gray;
+  display:flex;
+  justify-content:space-evenly;
+  box-sizing:border-box;
+}
+.topM{
+  display:flex;
+  align-content:center;
+  padding: 11px;
+}
+
+.topM:hover{
+  background-color:lightgray;
+}
+
+.noUnderline{
+  text-decoration:none;
+  color:black;
+}
