@@ -225,12 +225,12 @@
         if (isNaN(rows[i].cells[j].innerHTML) && rows[i].cells[j].innerHTML !== '-') {
               rows[i].cells[j].innerHTML = 'x';
 
-        const node = document.getElementsByTagName("table")[i][j];
-        node.addEventListener("keyup", function(event) {
-        if (event.key === "Enter") {
-          alert("error");
-        }
-        });
+          const node = document.getElementsByTagName("table")[i][j];
+          node.addEventListener("keyup", function(event) {
+          if (event.key === "Enter") {
+            alert("error");
+          }
+          });
         }
       }
     }
