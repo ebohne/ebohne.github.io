@@ -220,7 +220,7 @@
     let landingArm = landingMoment/landingWeight;
     rows[10].cells[2].textContent = Math.ceil(landingArm*100)/100;
 
-    for (let i = 6; i < rows.length; i++) {
+    for (let i = 0; i < rows.length; i++) {
       for (let j = 1; j < rows[i].cells.length; j++) {
         if (isNaN(rows[i].cells[j].innerHTML) && rows[i].cells[j].innerHTML !== '-') {
               rows[i].cells[j].innerHTML = 'x';
