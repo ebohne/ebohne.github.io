@@ -195,6 +195,9 @@
     }
     rows[6].cells[3].textContent = Math.ceil(totalMoment*100)/100;
 
+    let emptyMoment = rows[1].cells[1] * rows[1].cells[2];
+    rows.[1].cells[3].textContent = Math.ceil(emptyMoment*100)/100;
+
     let totalArm = document.getElementsByTagName("table")[0].rows[6].cells[2];
     totalArm.innerHTML = Math.ceil(rows[6].cells[3].textContent/rows[6].cells[1].textContent*100)/100;
 
